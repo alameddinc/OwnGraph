@@ -2,9 +2,9 @@ type Todo {
     title : String!,
     description: String,
     status: Boolean!
-}
+},
 
 type Query {
     todos : [Todo],
-    todo : Todo
+    todo (data: String) : String
 }

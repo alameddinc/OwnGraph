@@ -1,6 +1,6 @@
 module.exports = {
     Query: {
-        todos : () => [],
-        todo : () =>  null
+        todos: () => {},
+        todo: (parent, args) => 'Hello world! ' + args.data,
     },
 }
