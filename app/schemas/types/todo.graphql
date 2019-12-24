@@ -6,5 +6,5 @@ type Todo {
 
 type Query {
     todos : [Todo],
-    todo (data: String) : String
+    todo (id : Int) : Todo
 }

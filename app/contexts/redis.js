@@ -1,0 +1,1 @@
+const redisConfig = require('../config/redis');
