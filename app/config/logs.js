@@ -6,15 +6,15 @@ const api_log = new ErrorSchema("API","api_logs");
 const db_logs = new ErrorSchema("DB","db_logs");
 const redis_logs = new ErrorSchema("Redis","redis_logs");
 
-const logFactory = (data, error_log) => {
+const logFactory = (data, logSchema) => {
     const d = new Date();
-    const filename = error_log.filename + d.getDay() + '-' + d.getDay() + '-' + d.getDay() + '.log';
+    const filename = __dirname + "/logs/" + logSchema.filename + d.getDay() + '-' + d.getDay() + '-' + d.getDay() + '.log';
 
-    console.log(error_log.name + "      " + data);
+    console.log(logSchema.name + "      " + data);
     if (fs.existsSync(filename)) {
         fs.appendFile(filename, data, function (err) {
             if (err) throw err;
-            console.log(error_log.name + ' Saved!');
+            console.log(logSchema.name + ' Saved!');
         });
     } else {
         fs.writeFile(filename, data, (err) => {

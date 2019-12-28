@@ -7,6 +7,7 @@ class ErrorSchema {
 
 
 
+
 module.exports = {
     ErrorSchema: ErrorSchema
 }
