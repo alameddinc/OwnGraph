@@ -1,14 +1,12 @@
 const {Schema} = require('mongoose');
 
-const listSchema = new Schema({
+const todoModel = new Schema({
     id: String,
     title: { type: String, required: true },
-    userId: String,
     status: Boolean,
+    listId: String,
     created_at: Date,
     updated_at: Date
 });
 
-module.exports = {
-    schema: listSchema
-}
+module.exports = todoModel
