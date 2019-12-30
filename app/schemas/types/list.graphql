@@ -1,0 +1,10 @@
+type Query {
+    list: List,
+    lists: [List]
+}
+type List {
+    id: String
+    title: String,
+    description: String,
+    todos: [Todo]
+}

@@ -1,3 +1,5 @@
 #import Query from './types/hello.graphql'
 
+#import Query from './types/list.graphql'
+
 #import Query from './types/todo.graphql'
