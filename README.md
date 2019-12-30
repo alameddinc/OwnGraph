@@ -6,7 +6,7 @@ Now, Its a child, but Its working for its dream. It loves Stars ;)
 
 
 ## For Run
-Please run this command on Terminal. (Dont forget install modules with `npm install`)
+Please run this command on Terminal. (Dont forget installing modules with `npm install`)
 
 `npm run start:dev`
 
