@@ -1,7 +1,7 @@
 const databaseConfig = require('../../config/database');
 const mongoose = require('mongoose');
-const {todoSchema,listSchema} =  require('./schema');
-const {db_logs} = require('../../config/logs')
+const {todoSchema,listSchema} =  require('./schma');
+const {db_logs} = require('../../contexts/logs')
 //Connection
 const db = mongoose.connect(databaseConfig.url).catch((err)=>{
     db_logs(err);

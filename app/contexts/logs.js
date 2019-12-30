@@ -1,4 +1,4 @@
-const {ErrorSchema} = require('./logConfig/logSchema');
+const {ErrorSchema} = require('../config/logConfig/logSchema');
 const fs = require('fs');
 
 const error_log = new ErrorSchema("error","error_logs");
@@ -8,11 +8,12 @@ const redis_logs = new ErrorSchema("Redis","redis_logs");
 
 const logFactory = (data, logSchema) => {
     const d = new Date();
-    const filename = __dirname + "/logs/" + logSchema.filename + d.getDay() + '-' + d.getDay() + '-' + d.getDay() + '.log';
+    const logFolder =  __dirname + "/../../logs/";
+    const filename =  logFolder + logSchema.fileType + '-' + d.getDay() + '-' + d.getMonth() + '-' + d.getFullYear() + '.log';
 
     console.log(logSchema.name + "      " + data);
     if (fs.existsSync(filename)) {
-        fs.appendFile(filename, data, function (err) {
+        fs.appendFile(filename, data + "\n", function (err) {
             if (err) throw err;
             console.log(logSchema.name + ' Saved!');
         });

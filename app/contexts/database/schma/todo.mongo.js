@@ -10,5 +10,5 @@ const todoSchema = new Schema({
 });
 
 module.exports = {
-    schema: todoSchema
+    todo: todoSchema
 }

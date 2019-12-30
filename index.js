@@ -3,10 +3,11 @@ const {ApolloServer} = require('apollo-server-express');
 const {importSchema} = require('graphql-import');
 const typedefs = importSchema('./app/schemas/schema.graphql');
 const resolvers = require('./app/resolvers');
+const contexts = require('./app/contexts');
 
 const server = new ApolloServer({
     typeDefs: typedefs,
-    resolvers: resolvers
+    resolvers: resolvers,
 });
 
 const app = express();

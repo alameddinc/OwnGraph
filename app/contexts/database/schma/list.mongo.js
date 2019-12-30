@@ -10,5 +10,5 @@ const listSchema = new Schema({
 });
 
 module.exports = {
-    schema: listSchema
+    list: listSchema
 }
