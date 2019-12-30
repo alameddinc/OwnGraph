@@ -11,5 +11,15 @@ type Todo {
     list: List
 }
 
+type Mutation{
+    createTodo(data: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+    title: String!,
+    description: String,
+    listId: String!
+}
+
 
 

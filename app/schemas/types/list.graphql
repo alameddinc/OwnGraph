@@ -1,5 +1,5 @@
 type Query {
-    list: List,
+    list(id:String): List,
     lists: [List]
 }
 type List {
@@ -8,3 +8,13 @@ type List {
     description: String,
     todos: [Todo]
 }
+
+type Mutation{
+    createList(data: CreateListInput!): List!
+}
+
+input CreateListInput {
+    title: String!,
+    description: String,
+}
+
