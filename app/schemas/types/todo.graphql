@@ -1,10 +1,25 @@
-type Todo {
-    title : String!,
-    description: String,
-    status: Boolean!
-},
-
 type Query {
     todos : [Todo],
-    todo (id : Int) : Todo
+    todo (id : String) : Todo
 }
+
+type Todo {
+    id: String,
+    title : String!,
+    description: String,
+    status: Boolean!,
+    list: List
+}
+
+type Mutation{
+    createTodo(data: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+    title: String!,
+    description: String,
+    listId: String!
+}
+
+
+

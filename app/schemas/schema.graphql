@@ -1,3 +1,7 @@
 #import Query from './types/hello.graphql'
 
+#import Query from './types/list.graphql'
+#import Mutation from './types/list.graphql'
+
 #import Query from './types/todo.graphql'
+#import Mutation from './types/todo.graphql'

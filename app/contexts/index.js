@@ -1,4 +1,4 @@
-const db = require('./database/database');
+const db = require('./database/');
 const redis = require('./redis');
 const logs = require('./logs');
 

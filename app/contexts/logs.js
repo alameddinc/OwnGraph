@@ -1,24 +1,23 @@
-const {ErrorSchema} = require('../config/logConfig/logSchema');
 const fs = require('fs');
 
-const error_log = new ErrorSchema("error","error_logs");
-const api_log = new ErrorSchema("API","api_logs");
-const db_logs = new ErrorSchema("DB","db_logs");
-const redis_logs = new ErrorSchema("Redis","redis_logs");
+const {log} = require('../config');
+
+const error_log = new log.ErrorSchema("error", "error_logs");
+const db_logs = new log.ErrorSchema("DB", "db_logs");
+const redis_logs = new log.ErrorSchema("Redis", "redis_logs");
 
 const logFactory = (data, logSchema) => {
     const d = new Date();
-    const logFolder =  __dirname + "/../../logs/";
-    const filename =  logFolder + logSchema.fileType + '-' + d.getDay() + '-' + d.getMonth() + '-' + d.getFullYear() + '.log';
-
-    console.log(logSchema.name + "      " + data);
+    const filename = log.logFolder + logSchema.fileType + '-' + d.getDay() + '-' + d.getMonth() + '-' + d.getFullYear() + '.log';
+    const errorText = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + " - " + data + "\n"
+    console.log(errorText);
     if (fs.existsSync(filename)) {
-        fs.appendFile(filename, data + "\n", function (err) {
+        fs.appendFile(filename, errorText, function (err) {
             if (err) throw err;
             console.log(logSchema.name + ' Saved!');
         });
     } else {
-        fs.writeFile(filename, data, (err) => {
+        fs.writeFile(filename, errorText, (err) => {
             if (err) throw err;
         })
     }
@@ -26,8 +25,7 @@ const logFactory = (data, logSchema) => {
 }
 
 module.exports = {
-    error_logs: (input) => logFactory(input,error_log),
-    api_logs: (input) => logFactory(input,api_log),
-    db_logs: (input) => logFactory(input,db_logs),
-    redis_logs: (input) => logFactory(input,redis_logs),
+    error_logs: (input) => logFactory(input, error_log),
+    db_logs: (input) => logFactory(input, db_logs),
+    redis_logs: (input) => logFactory(input, redis_logs),
 }
