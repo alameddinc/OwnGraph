@@ -1,10 +1,10 @@
 const database = require('./database');
-const redis = require('./redis');
+const redisConf = require('./redis');
 const log = require('./log/index');
 
 
 module.exports = {
     database: database,
-    redis: redis,
+    redisConf: redisConf,
     log: log
 }
