@@ -11,10 +11,15 @@ type List {
 
 type Mutation{
     createList(data: CreateListInput!): List!
+    deleteList(id: String): String
+    findList(id: String): List!
+    updateList(selector: String!, data: CreateListInput!): List!
 }
 
 input CreateListInput {
-    title: String!,
+    title: String,
     description: String,
+    status: Boolean,
+    userId: String
 }
 

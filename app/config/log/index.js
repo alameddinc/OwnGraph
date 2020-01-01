@@ -1,6 +1,6 @@
 const path = require('path');
 
-const logFolder = path.dirname(require.main.filename) + "/logs/";
+const logFolder = path.logFolder;
 
 const  ErrorSchema = require('./logSchema')
 

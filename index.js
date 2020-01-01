@@ -1,15 +1,14 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const {importSchema} = require('graphql-import');
-const db = require('./app/tempData');
-const {logs} = require('./app/contexts');
+const {db, logs, models} = require('./app/contexts');
 const typedefs = importSchema('./app/schemas/schema.graphql');
 const resolvers = require('./app/resolvers');
 
 const server = new ApolloServer({
     typeDefs: typedefs,
     resolvers: resolvers,
-    context: {db, logs}
+    context: {db, logs, models}
 });
 
 const app = express();

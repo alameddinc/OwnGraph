@@ -1,11 +1,15 @@
 const listMutation = {
-    createList: (parent, args, { db }) => {
-        const tempList = {
-            id: Math.random().toString(36).substr(2,10),
-            ...args.data
-        };
-        db.ldata.push(tempList)
-        return tempList;
+    createList: (parent, args, {models}) => {
+        return models.listModel.createList(args.data)
+    },
+    deleteList: (parent, args, {models}) => {
+        return models.listModel.removeList(args.id)
+    },
+    findList: (parent, args, {models}) => {
+        return models.listModel.findInList(args.id)
+    },
+    updateList: (parent, args, {models}) => {
+        return models.listModel.listUpdate(args.selector, args.data)
     }
 };
 
