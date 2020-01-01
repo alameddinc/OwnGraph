@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 const root = path.dirname(require.main.filename);
 const log = root + "/logs/";
@@ -10,9 +10,15 @@ const database = context + "/database";
 const model = context + "/models";
 const consts = context + "/consts";
 
+//modules
+const logModule = context + "/logs";
+const databaseModule = context + "/database";
+const redisModule = context + "/models";
+const modelModule = context + "/redis";
 
 
 module.exports = {
+    //Folders
     rootFolder: root,
     logFolder: log,
     configFolder: config,
@@ -20,5 +26,11 @@ module.exports = {
     schemasFolder: schemas,
     contextFolder: context,
     databaseFolder: database,
-    modelFolder: model
+    modelFolder: model,
+
+    //Modules
+    logModule: logModule,
+    databaseModule: databaseModule,
+    redisModule: redisModule,
+    modelModule: modelModule,
 }

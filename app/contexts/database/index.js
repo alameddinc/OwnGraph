@@ -2,6 +2,7 @@ const {database: index} = require('../../config');
 const mongoose = require('mongoose');
 
 //Connection
+mongoose.set('useFindAndModify', false);
 const db = mongoose.connect(index.url);
 
 //Schemas

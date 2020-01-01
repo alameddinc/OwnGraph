@@ -21,6 +21,7 @@ const logFactory = (data, logSchema) => {
             if (err) throw err;
         })
     }
+    return errorText
 
 }
 
