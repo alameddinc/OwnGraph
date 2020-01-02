@@ -3,7 +3,7 @@
  */
 
 const {path} = require('../../config')
-const {List: ListModel} = require(path.databaseFolder)
+const {Todo: TodoModel} = require(path.databaseFolder)
 const {db_logs} = require('../../contexts/logs')
 const Promise = require('promise')
 
@@ -12,16 +12,16 @@ const Promise = require('promise')
  * @param data
  * @returns {Promise<*>}
  */
-const createList = async (data) => {
+const createTodo = async (data) => {
     try {
-        const list = new ListModel({
+        const list = new TodoModel({
             id: Math.random().toString(36).substr(2, 10),
             status: true,
             ...data
         });
         return await list.save();
     } catch (e) {
-        return `List Create error: ${e.message}`;
+        return `Todo Create error: ${e.message}`;
     }
 }
 
@@ -30,34 +30,29 @@ const createList = async (data) => {
  * @param id
  * @returns {Promise<string>}
  */
-const removeList = async (id) => {
+const removeTodo = async (id) => {
     try {
-        const listDeleted = await ListModel.deleteOne({id: id});
+        const listDeleted = await TodoModel.deleteOne({id: id});
         console.log(listItem)
         if (!listItem.deletedCount)
             return `${id} could not be found!`
 
         return `${id} removed!`;
     } catch (e) {
-        return db_logs(`List remove error: ${e.message}`);
+        return db_logs(`Todo remove error: ${e.message}`);
     }
 }
 
 /**
  * Search Function
- * @param input
+ * @param inputId
  * @returns {Promise<*|string>}
  */
-const findInList = async (input) => {
+const findInTodo = async (inputId) => {
     try {
-        let data = {};
-        Object.entries(input).forEach((i) => {
-            data[i[0]] = i[1];
-        });
-
-        return await ListModel.find(data);
+        return await TodoModel.findOne({id: inputId});
     } catch (e) {
-        return db_logs(`List find error: ${e.message}`);
+        return db_logs(`Todo find error: ${e.message}`);
     }
 }
 
@@ -69,24 +64,24 @@ const findInList = async (input) => {
  */
 const listUpdate = async (findId, data) => {
     try {
-        return await ListModel.findOneAndUpdate({id: findId}, data, {new: true});
+        return await TodoModel.findOneAndUpdate({id: findId}, data, {new:true});
     } catch (e) {
-        return db_logs(`List update error: ${e.message}`);
+        return db_logs(`Todo update error: ${e.message}`);
     }
 }
 
 /**
  *
  * @type {{
- * createList: (function(*=): Promise<*>),
- * removeList: (function(*=): Promise<string>),
+ * createTodo: (function(*=): Promise<*>),
+ * removeTodo: (function(*=): Promise<string>),
  * listUpdate: (function(*=, *=): Promise<*|string>),
- * findInList: (function(*=): Promise<*|string>)
+ * findInTodo: (function(*=): Promise<*|string>)
  * }}
  */
 module.exports = {
-    createList: (inputData) => createList(inputData),
-    removeList: (inputId) => removeList(inputId),
+    createTodo: (inputData) => createTodo(inputData),
+    removeTodo: (inputId) => removeTodo(inputId),
     listUpdate: (inputId, inputData) => listUpdate(inputId, inputData),
-    findInList: (inputId) => findInList(inputId)
+    findInTodo: (inputId) => findInTodo(inputId)
 }

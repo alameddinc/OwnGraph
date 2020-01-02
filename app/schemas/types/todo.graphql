@@ -1,6 +1,6 @@
 type Query {
     todos : [Todo],
-    todo (id : String) : Todo
+    todo (id : String) : [Todo]
 }
 
 type Todo {
@@ -13,6 +13,8 @@ type Todo {
 
 type Mutation{
     createTodo(data: CreateTodoInput!): Todo!
+    deleteTodo(id: String): String
+    updateTodo(selector: String!, data: CreateTodoInput!): Todo!
 }
 
 input CreateTodoInput {

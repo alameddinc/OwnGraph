@@ -1,5 +1,5 @@
 type Query {
-    list(id:String): List,
+    list(data: FindListInput): [List]
     lists: [List]
 }
 type List {
@@ -12,11 +12,27 @@ type List {
 type Mutation{
     createList(data: CreateListInput!): List!
     deleteList(id: String): String
-    findList(id: String): List!
-    updateList(selector: String!, data: CreateListInput!): List!
+    updateList(id: String, data: UpdateListInput!): List!
+}
+
+
+
+input FindListInput {
+    id: String,
+    title: String,
+    description: String,
+    status: Boolean,
+    userId: String
 }
 
 input CreateListInput {
+    title: String!,
+    description: String,
+    status: Boolean,
+    userId: String!
+}
+
+input UpdateListInput {
     title: String,
     description: String,
     status: Boolean,
